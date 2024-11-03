@@ -4,79 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flip Book</title>
-  </head>
-  <style>
-    body {
-      background-color: aliceblue;
-    }
-    main {
-      display: flex;
-      aspect-ratio: 3/4;
-      justify-content: center;
-      align-items: center;
-      place-items: center;
-      transition: 2s;
-      width: 100%;
-      height: 500px;
-    }
-    img {
-      width: 20%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      transform-origin: left;
-      border-radius: 0 1rem 1rem 0;
-      transition: 2s;
-      box-shadow: 5px 5px 5px;
-    }
-
-    img:target {
-      transform: rotateY(180deg);
-    }
-
-    main:has(img:target) {
-      translate: 75px 0;
-    }
-    div {
-      position: absolute;
-      z-index: -1;
-      width: 20%;
-      aspect-ratio: 3/4;
-      background-color: #ddd;
-      border-radius: 0 1rem 1rem 0;
-    }
-    p {
-      text-align: center;
-      position: relative;
-      top: 10vh;
-      left: 5vh;
-      font-size: 3rem;
-      width: 200px;
-      font-weight: bold;
-    }
-
-    @media (max-width: 480px) {
-      div {
-        width: 50%;
+    <style>
+      body {
+        background-color: aliceblue;
+      }
+      main {
+        display: flex;
+        aspect-ratio: 3/4;
+        justify-content: center;
+        align-items: center;
+        place-items: center;
+        transition: 2s;
+        width: 100%;
+        height: 500px;
       }
       img {
-        width: 50%;
+        width: 20%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        transform-origin: left;
+        border-radius: 0 1rem 1rem 0;
+        transition: 2s;
+        box-shadow: 5px 5px 5px;
+      }
+      .flipped {
+        transform: rotateY(180deg);
+      }
+      main:has(img.flipped) {
+        translate: 75px 0;
+      }
+      div {
+        position: absolute;
+        z-index: -1;
+        width: 20%;
+        aspect-ratio: 3/4;
+        background-color: #ddd;
+        border-radius: 0 1rem 1rem 0;
       }
       p {
-        top: 7vh;
-        font-size: 2rem;
-        font-weight: bold;
-        width: 110px;
         text-align: center;
-        left: 35px;
+        position: relative;
+        top: 10vh;
+        left: 5vh;
+        font-size: 3rem;
+        width: 200px;
+        font-weight: bold;
       }
-    }
-  </style>
+      @media (max-width: 480px) {
+        div {
+          width: 50%;
+        }
+        img {
+          width: 50%;
+        }
+        p {
+          top: 7vh;
+          font-size: 1.5rem;
+          font-weight: bold;
+          width: 110px;
+          text-align: center;
+          left:23px;
+        }
+      }
+    </style>
+  </head>
   <body>
     <main>
-      <img src="clc.png" alt="" />
+      <img id="flipImage" src="clc.png" alt="" onclick="flipImage()" />
       <div>
         <p>"You're beautiful"</p>
       </div>
     </main>
+
+    <script>
+      function flipImage() {
+        const img = document.getElementById("flipImage");
+        img.classList.toggle("flipped");
+      }
+    </script>
   </body>
 </html>
